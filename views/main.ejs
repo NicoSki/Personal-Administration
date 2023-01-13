@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal-Management</title>
+
+    <!-- Tailwind CSS Link -->
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.1/tailwind.min.css">
+
+    <!-- Fontawesome Link -->
+    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <h1 class="text-center underline decoration-sky-500 font-serif">Personal-Management</h1>
+
+<a href="/newPersonal" id="new">Add New Personal</a>
+
+
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mt-12">
+      
+          <table class="table-fixed w-full">
+            <thead>
+              <tr class="bg-indigo-500 text-white">
+                <th class="w-20 py-4">Name</th>
+                <th class="w-1/4 py-4">Age</th>
+                <th class="w-1/2 py-4">Email</th>
+                <th class="w-28 py-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+          <% if(rows.length > 0){ %>     
+            <% rows.forEach(function(e) { %>
+              <tr>
+                <td class="py-3 px-6"><%= e.name %></td>
+                <td class="p-3 text-center"><%= e.age %></td>
+                <td class="p-3 text-center"><%= e.email %></td>
+                <td class="p-3 flex">
+                  <form action="/<%= e.id %>" method="POST" class="mx-2">
+                    <input type="hidden" value="<%= e.id %>" name="id">
+                        <button class="bg-red-500 text-white px-3 py-1 rounded-sm" type="submit">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                  </form>
+                  <a href="/edit/<%= e.id %>" class="bg-green-500 text-white px-3 py-1 rounded-sm">
+                    <i class="fas fa-pen"></i></a>
+                </td>
+              </tr>
+              <% }) %>  
+              <% }else{ %>
+                <tr>
+                  <td class="text-center">
+                    No 
+                  </td>
+                  <td class="text-center">
+                    Personal
+                  </td>
+                  <td class="text-center">
+                    Registered
+                  </td>
+                  <td class="text-center">
+                    Yet
+                  </td>
+                </tr>
+                <% } %> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+</body>
+</html>
